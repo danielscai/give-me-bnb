@@ -15,6 +15,7 @@ import (
 var (
 	to        string
 	proxy     string
+	clash     string
 	rpcUrl    string
 	socketUrl string
 )
@@ -31,6 +32,7 @@ func main() {
 func parseArgs() error {
 	flag.StringVar(&to, "to", "", "your address (required)")
 	flag.StringVar(&proxy, "proxy", "", "proxy url")
+	flag.StringVar(&clash, "clash", "", "clash api ")
 	flag.StringVar(&socketUrl, "socket-url", "wss://testnet.binance.org/faucet-smart/api", "bsc faucet socket url")
 	flag.StringVar(&rpcUrl, "rpc-url", "https://data-seed-prebsc-1-s1.binance.org:8545", "bsc testnet rpc url")
 	flag.Parse()
@@ -53,11 +55,20 @@ func run() error {
 	}
 	defer client.Close()
 
-	err = clash(run_single_get)
-	if err != nil {
-		return err
-		// fmt.Print(err)
+	if clash == "" {
+		err = run_single_get()
+		if err != nil {
+			return err
+			// fmt.Print(err)
+		}
+	} else {
+		err = run_clash(run_single_get, clash)
+		if err != nil {
+			return err
+			// fmt.Print(err)
+		}
 	}
+
 	return nil
 }
 

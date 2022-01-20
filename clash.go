@@ -35,10 +35,8 @@ const (
 	PROXY_BASE string = "http://127.0.0.1:9090/proxies/"
 )
 
-func clash(r run_single) error {
-
+func run_clash(r run_single, proxy_name string) error {
 	client := &http.Client{}
-	proxy_name := "✈️ 手动切换"
 	escapeUrl := url.PathEscape(proxy_name)
 	reqest_url := PROXY_BASE + escapeUrl
 	// fmt.Print(reqest_url)
