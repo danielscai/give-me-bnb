@@ -19,6 +19,8 @@ var (
 	socketUrl string
 )
 
+type run_single func() error
+
 func main() {
 	if err := run(); err != nil {
 		fmt.Fprintln(os.Stderr, err.Error())
@@ -45,7 +47,21 @@ func run() error {
 	if err := parseArgs(); err != nil {
 		return err
 	}
+	client, err := ethclient.Dial(rpcUrl)
+	if err != nil {
+		return err
+	}
+	defer client.Close()
 
+	err = clash(run_single_get)
+	if err != nil {
+		return err
+		// fmt.Print(err)
+	}
+	return nil
+}
+
+func run_single_get() error {
 	ctx := context.Background()
 
 	client, err := ethclient.Dial(rpcUrl)
