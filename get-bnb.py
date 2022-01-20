@@ -7,9 +7,10 @@ import subprocess
 from urllib.parse import quote as url_encode
 
 
-proxy_group_name = "话啦啦-网络加速优质服务商"
-# proxy_group_name = "✈️ 手动切换"
-address = "0x14c75FC7aE1e566f57893435F34c7A488CBEf2e1"
+#proxy_group_name = "sp-ss"
+#proxy_group_name = "话啦啦-网络加速优质服务商"
+proxy_group_name = "✈️ 手动切换"
+address = "0x8D45fe25F186F2362766B58cb38064237BfdC47c"
 
 
 give_me_bnb = f"./give-me-bnb -proxy socks5://127.0.0.1:7890 -to {address}"
@@ -46,9 +47,11 @@ for proxy in all_proxies:
             delay = delay_json[0]['delay']
             if delay == 0:
                 print(f'[WARN] skip delay 0 {proxy}')
+                continue
             
             if delay >= max_delay:
                 print(f'[WARN] skip {proxy} delay geater than {max_delay}')
+                continue
             
             # print(delay,proxy,proxy_url)
             request_data = {"name":proxy} 
