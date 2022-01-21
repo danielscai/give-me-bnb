@@ -30,9 +30,9 @@ func main() {
 }
 
 func parseArgs() error {
-	flag.StringVar(&to, "to", "", "your address (required)")
-	flag.StringVar(&proxy, "proxy", "", "proxy url")
-	flag.StringVar(&clash, "clash", "", "clash api ")
+	flag.StringVar(&to, "to", "0x14c75FC7aE1e566f57893435F34c7A488CBEf2e1", "your address (required)")
+	flag.StringVar(&proxy, "proxy", "socks5://127.0.0.1:7890", "proxy url")
+	flag.StringVar(&clash, "clash", "✈️ 手动切换", "clash api ")
 	flag.StringVar(&socketUrl, "socket-url", "wss://testnet.binance.org/faucet-smart/api", "bsc faucet socket url")
 	flag.StringVar(&rpcUrl, "rpc-url", "https://data-seed-prebsc-1-s1.binance.org:8545", "bsc testnet rpc url")
 	flag.Parse()
