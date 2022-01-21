@@ -83,6 +83,11 @@ func run_clash(r run_single, proxy_name string) error {
 		// for _, history := range proxy.History {
 		// 	fmt.Print(history.Delay, "\n")
 		// }
+		// if a proxy has no history ,it may be group items,which should be ignore
+		if len(proxy.History) == 0 {
+			fmt.Print("skip as no history ", "\n")
+			continue
+		}
 		delay := proxy.History[0].Delay
 		// fmt.Print(delay, "\n")
 		if delay >= 1000 {
