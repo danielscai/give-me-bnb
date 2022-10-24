@@ -58,3 +58,4 @@ $ docker run --rm kewka/give-me-bnb give-me-bnb -proxy socks5://127.0.0.1:9050 -
 ```sh
 $ docker run --rm kewka/give-me-bnb sh -c "while :; do give-me-bnb -proxy socks5://127.0.0.1:9050 -to <address>; killall -HUP tor; done"
 ```
+update 
